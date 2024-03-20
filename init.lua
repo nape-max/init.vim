@@ -1,0 +1,1 @@
+require("mak8s")
