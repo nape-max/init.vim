@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Project Explorer" })
 
 vim.keymap.set("n", "<leader>u", "UndotreeShow<CR>")
 
