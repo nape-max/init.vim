@@ -15,7 +15,9 @@ require('mason-lspconfig').setup({
             lspconfig.gopls.setup({
                 settings = {
                     gopls = {
-                        gofumpt = true
+                        gofumpt = true,
+                        -- Required for correct LSP work inside Integrations tests.
+                        buildFlags = {"-tags=integration"}
                     }
                 }
             })
