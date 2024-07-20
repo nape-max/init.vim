@@ -75,10 +75,10 @@ nvim_lsp.cssls.setup({
 })
 
 -- Tailwind
-nvim_lsp.tailwindcss.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
+--nvim_lsp.tailwindcss.setup({
+--	on_attach = on_attach,
+--	capabilities = capabilities,
+--})
 
 -- Golang
 nvim_lsp.gopls.setup({
