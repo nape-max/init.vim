@@ -93,12 +93,21 @@ return require('packer').startup(function(use)
   }
   use {
       "folke/which-key.nvim",
+      opts = {
+           triggers = {
+               { "<leader>", mode = { "n", "v" } },
+           }
+      },
       config = function()
           vim.o.timeout = true
           vim.o.timeoutlen = 0
           require("which-key").setup({})
-          end
+          end,
+      requires = {
+          'echasnovski/mini.nvim',
+          'nvim-tree/nvim-web-devicons',
       }
+  }
 
  -- use {'nape-max/ntutorial', branch='master'}
 end)
