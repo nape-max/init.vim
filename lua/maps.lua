@@ -1,17 +1,13 @@
-local function map(mode, lhs, rhs, desc)
-	vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc })
-end
-
 local status, telescope = pcall(require, "telescope.builtin")
 if status then
 	-- Telescope
-	map("n", "<leader>fb", telescope.buffers)
-	map("n", "<leader>fh", telescope.help_tags)
-	map("n", "<leader>fc", telescope.git_commits)
+	vim.keymap.set("n", "<leader>fb", telescope.buffers)
+	vim.keymap.set("n", "<leader>fh", telescope.help_tags)
+	vim.keymap.set("n", "<leader>fc", telescope.git_commits)
 
-	map('n', '<leader>pff', telescope.find_files, "Project Search: Find Files")
-	map('n', '<leader>pfs', telescope.live_grep, "Project Search: Live Grep")
-	map('n', '<leader>pfg', telescope.git_files, "Project Search: Git Files")
+	vim.keymap.set('n', '<leader>pff', telescope.find_files, { desc = "Project Search: Find Files" })
+	vim.keymap.set('n', '<leader>pfs', telescope.live_grep, { desc = "Project Search: Live Grep" })
+	vim.keymap.set('n', '<leader>pfg', telescope.git_files, { desc = "Project Search: Git Files" })
 else
 	print("Telescope not found")
 end

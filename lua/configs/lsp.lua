@@ -5,6 +5,8 @@ if not status then
 	return
 end
 
+require("vim.lsp.protocol")
+
 -- Inject Brief LSP
 if not configs.briefls then
 	configs.briefls = {
@@ -26,8 +28,6 @@ if not configs.briefls then
 		settings = {},
 	}
 end
-
-local protocol = require("vim.lsp.protocol")
 
 local on_attach = function(client, bufnr)
 	local opts = { buffer = bufnr, remap = false }
@@ -60,6 +60,13 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 nvim_lsp.lua_ls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { "vim" },
+			},
+		},
+	},
 })
 
 -- TypeScript

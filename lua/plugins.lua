@@ -63,6 +63,7 @@ return require("packer").startup(function(use)
 	-- cmp: Autocomplete
 	use({
 		"hrsh7th/nvim-cmp",
+		as = "cmp",
 		event = "InsertEnter",
 		config = function()
 			require("configs.cmp")
@@ -71,9 +72,9 @@ return require("packer").startup(function(use)
 
 	use("hrsh7th/cmp-nvim-lsp")
 
-	use({ "hrsh7th/cmp-path", after = "nvim-cmp" })
+	use({ "hrsh7th/cmp-path", after = "cmp" })
 
-	use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
+	use({ "hrsh7th/cmp-buffer", after = "cmp" })
 
 	-- LSP diagnostics, code actions, and more via Lua.
 	use({
@@ -83,4 +84,17 @@ return require("packer").startup(function(use)
 		end,
 		requires = { "nvim-lua/plenary.nvim" },
 	})
+
+	-- Harpoon (Buffer Manager)
+	use {
+		"ThePrimeagen/harpoon",
+		config = function()
+			require("configs.harpoon")
+		end,
+		branch = "harpoon2",
+		requires = { { "nvim-lua/plenary.nvim" } }
+	}
+
+	-- Toggle comment
+	use({ "terrortylor/nvim-comment", config = function() require("configs.nvim-comment") end })
 end)
