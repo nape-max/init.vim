@@ -42,16 +42,23 @@ local on_attach = function(client, bufnr)
 		})
 	end
 
-	vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-	vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-	vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-	vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-	vim.keymap.set("n", "[d", function() vim.lsp.diagnostic.goto_next() end, opts)
-	vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
-	vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
-	vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
-	vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
-	vim.keymap.set("n", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+	initialize_lsp_which_keys()
+
+	vim.keymap.set("n", "gd", function()
+		vim.lsp.buf.definition()
+	end, opts)
+	vim.keymap.set("n", "K", function()
+		vim.lsp.buf.hover()
+	end, opts)
+	vim.keymap.set("n", "[d", function()
+		vim.lsp.diagnostic.goto_next()
+	end, opts)
+	vim.keymap.set("n", "]d", function()
+		vim.diagnostic.goto_prev()
+	end, opts)
+	vim.keymap.set("n", "<C-h>", function()
+		vim.lsp.buf.signature_help()
+	end, opts)
 end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -81,19 +88,20 @@ nvim_lsp.cssls.setup({
 	capabilities = capabilities,
 })
 
--- Tailwind
---nvim_lsp.tailwindcss.setup({
---	on_attach = on_attach,
---	capabilities = capabilities,
---})
-
 -- Golang
 nvim_lsp.gopls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
+	settings = {
+		gopls = {
+			gofumpt = true,
+			-- Required for correct LSP work inside Integrations tests.
+			buildFlags = { "-tags=integration" },
+		},
+	},
 })
 
-vim.filetype.add({ extension = { brief = 'brief' } })
+vim.filetype.add({ extension = { brief = "brief" } })
 -- Setup server
 nvim_lsp.briefls.setup({
 	on_attach = on_attach,
@@ -102,3 +110,49 @@ nvim_lsp.briefls.setup({
 	},
 	capabilities = capabilities,
 })
+
+function initialize_lsp_which_keys()
+	local wk = require("which-key")
+
+	wk.add({
+		{ "<leader>v", group = "Code" },
+		{ "<leader>vw", group = "Workspace" },
+		{
+			"<leader>vws",
+			function()
+				vim.lsp.buf.workspace_symbol()
+			end,
+			desc = "Find Symbol",
+		},
+		{
+			"<leader>vd",
+			function()
+				vim.diagnostic.open_float()
+			end,
+			desc = "Open Float",
+		},
+		{ "<leader>vc", group = "Code" },
+		{
+			"<leader>vca",
+			function()
+				vim.lsp.buf.code_action()
+			end,
+			desc = "Actions",
+		},
+		{ "<leader>vr", group = "Element" },
+		{
+			"<leader>vrr",
+			function()
+				vim.lsp.buf.references()
+			end,
+			desc = "References",
+		},
+		{
+			"<leader>vrn",
+			function()
+				vim.lsp.buf.rename()
+			end,
+			desc = "Rename",
+		},
+	})
+end

@@ -19,8 +19,13 @@ curl https://sh.rustup.rs -sSf | sh
 Requirements, not installed automatically:
 
 1. Language servers:
+
    - lua-language-server (`brew install lua-language-server`)
    - gopls (`go install golang.org/x/tools/gopls@latest`)
    - tsserver (`brew install typescript-language-server`)
    - prettier (`brew install prettier`)
    - prettierd (`brew install prettierd`)
+
+2. Formatters:
+
+   - stylua (`cargo install stylua`)
