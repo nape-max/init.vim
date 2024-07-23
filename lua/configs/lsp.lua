@@ -29,6 +29,7 @@ if not configs.briefls then
 	}
 end
 
+local initialize_lsp_which_keys
 local on_attach = function(client, bufnr)
 	local opts = { buffer = bufnr, remap = false }
 	-- format on save
