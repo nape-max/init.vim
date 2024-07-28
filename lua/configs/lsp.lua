@@ -83,6 +83,9 @@ nvim_lsp.tsserver.setup({
 	capabilities = capabilities,
 })
 
+-- JSON server
+nvim_lsp.jsonls.setup({})
+
 -- CSS
 nvim_lsp.cssls.setup({
 	on_attach = on_attach,

@@ -23,6 +23,8 @@ Requirements, not installed automatically:
    - lua-language-server (`brew install lua-language-server`)
    - gopls (`go install golang.org/x/tools/gopls@latest`)
    - tsserver (`brew install typescript-language-server`)
+   - json-server (`npm i -g vscode-langservers-extracted`)
+   - eslint (`npm install -g eslint_d`)
    - prettier (`brew install prettier`)
    - prettierd (`brew install prettierd`)
 
