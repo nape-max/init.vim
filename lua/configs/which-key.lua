@@ -11,6 +11,8 @@ end
 -- " -> system buffer access
 
 wk.add({
+	{ "<leader>g", mode = { "n" }, group = "Git" },
+	{ "<leader>gb", "<cmd>GitBlameToggle<cr>", desc = "Blame" },
 	{
 		"<leader>a",
 		function()
