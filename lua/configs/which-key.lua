@@ -74,6 +74,14 @@ wk.add({
 			desc = "Live Grep",
 		},
 		{
+			"<leader>pfc",
+			function()
+				-- if you want something, search by keyword: "vimgrep_arguments"
+				telescope.live_grep({ additional_args = { "-s" } })
+			end,
+			desc = "Live Grep (case sensitive)",
+		},
+		{
 			"<leader>pfg",
 			function()
 				telescope.git_files()
