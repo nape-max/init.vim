@@ -1,6 +1,9 @@
 local global = vim.g
 local o = vim.o
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 vim.scriptencoding = "utf-8"
 
 -- Map <leader>
@@ -32,4 +35,4 @@ vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
-vim.opt.colorcolumn = "120"
+vim.opt.colorcolumn = "98" -- 3 символа это служебные колонки, код начинается с 3

@@ -56,7 +56,7 @@ wk.add({
         },
     },
     { "<leader>p",  group = "Project" },
-    { "<leader>pv", "<cmd>Ex<cr>",    desc = "Explorer" },
+    { "<leader>pv", "<cmd>NvimTreeFindFileToggle<cr>", desc = "Explorer" },
     { "<leader>pf", group = "Search" },
     {
         {
