@@ -81,6 +81,13 @@ nvim_lsp.lua_ls.setup({
 nvim_lsp.tsserver.setup({
     on_attach = on_attach,
     capabilities = capabilities,
+    root_dir = nvim_lsp.util.root_pattern("package.json"),
+    single_file_support = false,
+})
+nvim_lsp.denols.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
 })
 
 -- JSON server

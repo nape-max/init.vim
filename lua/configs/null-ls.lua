@@ -23,7 +23,11 @@ nls.setup({
         fmt.rustfmt,
 
         -- Diagnostics
-        dgn.eslint_d,
+        dgn.eslint_d.with({
+            condition = function(utils)
+                return utils.root_has_file({ "eslint.config.js" })
+            end,
+        }),
         dgn.shellcheck,
         dgn.pylint.with({
             method = nls.methods.DIAGNOSTICS_ON_SAVE,
