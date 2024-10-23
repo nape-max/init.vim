@@ -13,7 +13,8 @@ return require("packer").startup(function(use)
     use({ "nvim-tree/nvim-web-devicons", commit = "5be6c4e685618b99c3210a69375b38a1202369b4" })
 
     -- Colorschema
-    use({ "rose-pine/neovim", as = "rose-pine", commit = "e4b08d74b7272cb21e4e9c71b8b9e0830fd722fe" })
+    use({ "catppuccin/nvim", as = "catppuccin", commit = "c9e205fe035d622b3c2d66ee42edf368c0c31fd5" })
+    -- use({ "rose-pine/neovim", as = "rose-pine", commit = "e4b08d74b7272cb21e4e9c71b8b9e0830fd722fe" })
 
     -- Statusline
     use({
