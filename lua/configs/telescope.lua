@@ -4,11 +4,7 @@ if not status then
     return
 end
 
-vim.keymap.set("n", "<leader>fb", function()
-    telescope.find_files()
-end)
-
-vim.keymap.set("n", "<leader>fc", function()
+vim.keymap.set("n", "<leader>fgc", function()
     telescope.git_commits()
 end)
 

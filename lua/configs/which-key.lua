@@ -29,8 +29,10 @@ wk.add({
             "<leader>fg",
             mode = { "n" },
             group = "Git",
+            { "<leader>fgc", desc = "Commits" },
             { "<leader>fgb", "<cmd>GitBlameToggle<cr>", desc = "Blame" },
         },
+        { "<leader>fh", desc = "Telescope: Help tags" },
     },
     {
         "<leader>g",
