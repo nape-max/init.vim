@@ -1,5 +1,7 @@
-vim.keymap.set("n", "<C-w>", "<cmd>:wincmd w<cr>")
-vim.keymap.set("n", "<C-p>", "<cmd>:wincmd p<cr>")
+vim.keymap.set("n", "<C-h>", "<cmd>:wincmd h<cr>")
+vim.keymap.set("n", "<C-j>", "<cmd>:wincmd j<cr>")
+vim.keymap.set("n", "<C-k>", "<cmd>:wincmd k<cr>")
+vim.keymap.set("n", "<C-l>", "<cmd>:wincmd l<cr>")
 
 -- Упрощение перевода inline аргументов в многострочные в Golang,
 -- но происходит только вызов Code Actions в нужном месте

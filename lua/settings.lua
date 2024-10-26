@@ -49,3 +49,8 @@ vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "none" })
+
+-- Inlay hints
+vim.keymap.set("n", "<leader>vi", function()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ 0 }), { 0 })
+end)
