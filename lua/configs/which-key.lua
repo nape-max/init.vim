@@ -4,6 +4,15 @@ local harpoon = require("harpoon")
 -- "+y -> a lot of helpers to work with Yank
 -- " -> system buffer access
 
+wk.setup({
+    win = {
+        height = {
+            min = 7,
+            max = 25,
+        },
+    },
+})
+
 wk.add({
     {
         "<leader>a",
