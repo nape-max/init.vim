@@ -91,13 +91,27 @@ return require("packer").startup(function(use)
 
     -- LSP diagnostics, code actions, and more via Lua.
     -- @DEPRECATED
+    -- use({
+    --     "jose-elias-alvarez/null-ls.nvim",
+    --     config = function()
+    --         require("configs.null-ls")
+    --     end,
+    --     requires = { "nvim-lua/plenary.nvim" },
+    --     commit = "0010ea927ab7c09ef0ce9bf28c2b573fc302f5a7",
+    -- })
+
     use({
-        "jose-elias-alvarez/null-ls.nvim",
+        'jose-elias-alvarez/null-ls.nvim',
         config = function()
             require("configs.null-ls")
         end,
-        requires = { "nvim-lua/plenary.nvim" },
-        commit = "0010ea927ab7c09ef0ce9bf28c2b573fc302f5a7",
+    })
+
+    use({
+        'MunifTanjim/prettier.nvim',
+        config = function()
+            require("configs.prettier")
+        end,
     })
 
     -- Harpoon (Buffer Manager)
