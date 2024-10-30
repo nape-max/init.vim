@@ -1,18 +1,19 @@
 local wk = require("which-key")
 local harpoon = require("harpoon")
 
-local status, telescope = pcall(require, "telescope.builtin")
-if not status then
-    print("Telescope not found")
-    return
-end
-
 -- "+y -> a lot of helpers to work with Yank
 -- " -> system buffer access
 
+wk.setup({
+    win = {
+        height = {
+            min = 7,
+            max = 25,
+        },
+    },
+})
+
 wk.add({
-    { "<leader>g",  mode = { "n" },            group = "Git" },
-    { "<leader>gb", "<cmd>GitBlameToggle<cr>", desc = "Blame" },
     {
         "<leader>a",
         function()
@@ -29,64 +30,66 @@ wk.add({
         mode = "n",
         desc = "Harpoon: Clear",
     },
-    { "<leader>f",  group = "File" },
     {
+        "<leader>f",
+        group = "File",
         mode = { "n" },
-        desc = "File",
         {
-            "<leader>fb",
-            function()
-                telescope.find_files()
-            end,
-            desc = "Buffers",
+            "<leader>fg",
+            mode = { "n" },
+            group = "Git",
+            { "<leader>fgc", desc = "Commits" },
+            { "<leader>fgb", "<cmd>GitBlameToggle<cr>", desc = "Blame" },
+        },
+        { "<leader>fh", desc = "Telescope: Help tags" },
+    },
+    {
+        "<leader>g",
+        group = "Going to",
+        {
+            "<leader>gd",
+            desc = "Definition",
         },
         {
-            "<leader>fh",
-            function()
-                telescope.help_tags()
-            end,
-            desc = "Help Tags",
+            "<leader>gi",
+            desc = "Implementations",
         },
         {
-            "<leader>fc",
-            function()
-                telescope.git_commits()
-            end,
-            desc = "Commits",
+            "<leader>gs",
+            desc = "Signature help",
+        },
+        {
+            "<leader>g[",
+            desc = "Diagnostic: next",
+        },
+        {
+            "<leader>g]",
+            desc = "Diagnostic: prev",
         },
     },
-    { "<leader>p",  group = "Project" },
-    { "<leader>pv", "<cmd>NvimTreeFindFileToggle<cr>", desc = "Explorer" },
-    { "<leader>pf", group = "Search" },
     {
+        "<leader>p",
+        group = "Project",
+        { "<leader>pv", "<cmd>NvimTreeFindFileToggle<cr>", desc = "Explorer" },
         {
-            "<leader>pff",
-            function()
-                telescope.find_files()
-            end,
-            desc = "Find Files",
-        },
-        {
-            "<leader>pfs",
-            function()
-                telescope.live_grep()
-            end,
-            desc = "Live Grep",
-        },
-        {
-            "<leader>pfc",
-            function()
-                -- if you want something, search by keyword: "vimgrep_arguments"
-                telescope.live_grep({ additional_args = { "-s" } })
-            end,
-            desc = "Live Grep (case sensitive)",
-        },
-        {
-            "<leader>pfg",
-            function()
-                telescope.git_files()
-            end,
-            desc = "Git Files",
+            "<leader>pf",
+            group = "Search",
+            {
+                "<leader>pff",
+                desc = "Find Files",
+            },
+            {
+                "<leader>pfs",
+                desc = "Live Grep",
+            },
+            {
+                "<leader>pfc",
+                desc = "Live Grep (case sensitive)",
+            },
+            {
+                "<leader>pfg",
+                desc = "Git Files",
+            },
         },
     },
 })

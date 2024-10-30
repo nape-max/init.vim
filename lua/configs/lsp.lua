@@ -45,20 +45,23 @@ local on_attach = function(client, bufnr)
 
     initialize_lsp_which_keys()
 
-    vim.keymap.set("n", "gd", function()
+    vim.keymap.set("n", "<leader>gd", function()
         vim.lsp.buf.definition()
     end, opts)
     vim.keymap.set("n", "K", function()
         vim.lsp.buf.hover()
     end, opts)
-    vim.keymap.set("n", "[d", function()
+    vim.keymap.set("n", "<leader>g[", function()
         vim.diagnostic.goto_next()
     end, opts)
-    vim.keymap.set("n", "]d", function()
+    vim.keymap.set("n", "<leader>g]", function()
         vim.diagnostic.goto_prev()
     end, opts)
-    vim.keymap.set("n", "<C-h>", function()
+    vim.keymap.set("n", "<leader>gs", function()
         vim.lsp.buf.signature_help()
+    end, opts)
+    vim.keymap.set("", "<leader>gi", function()
+        vim.lsp.buf.implementation()
     end, opts)
 end
 
@@ -88,6 +91,11 @@ nvim_lsp.denols.setup({
     on_attach = on_attach,
     capabilities = capabilities,
     root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
+})
+-- Svelte
+nvim_lsp.svelte.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
 })
 
 -- JSON server
@@ -169,44 +177,60 @@ function initialize_lsp_which_keys()
     local wk = require("which-key")
 
     wk.add({
-        { "<leader>v",  group = "Code" },
-        { "<leader>vw", group = "Workspace" },
         {
-            "<leader>vws",
-            function()
-                vim.lsp.buf.workspace_symbol()
-            end,
-            desc = "Find Symbol",
-        },
-        {
-            "<leader>vd",
-            function()
-                vim.diagnostic.open_float()
-            end,
-            desc = "Open Float",
-        },
-        { "<leader>vc", group = "Code" },
-        {
-            "<leader>vca",
-            function()
-                vim.lsp.buf.code_action()
-            end,
-            desc = "Actions",
-        },
-        { "<leader>vr", group = "Element" },
-        {
-            "<leader>vrr",
-            function()
-                vim.lsp.buf.references()
-            end,
-            desc = "References",
-        },
-        {
-            "<leader>vrn",
-            function()
-                vim.lsp.buf.rename()
-            end,
-            desc = "Rename",
+            "<leader>v",
+            group = "Code",
+            {
+                "<leader>vd",
+                function()
+                    vim.diagnostic.open_float()
+                end,
+                desc = "Open Float",
+            },
+            {
+                "<leader>vc",
+                group = "Code",
+                {
+                    "<leader>vca",
+                    function()
+                        vim.lsp.buf.code_action()
+                    end,
+                    desc = "Actions",
+                },
+            },
+            {
+                "<leader>vi",
+                desc = "Toggle inlay hints",
+            },
+            {
+                "<leader>vr",
+                group = "Element",
+                {
+                    "<leader>vrr",
+                    function()
+                        vim.lsp.buf.references()
+                    end,
+                    desc = "References",
+                },
+                {
+                    "<leader>vrn",
+                    function()
+                        vim.lsp.buf.rename()
+                    end,
+                    desc = "Rename",
+                },
+            },
+            {
+                "<leader>vw",
+                group = "Workspace",
+                {
+                    "<leader>vws",
+                    function()
+                        vim.lsp.buf.workspace_symbol()
+                    end,
+                    desc = "Find Symbol",
+                },
+            },
         },
     })
 end

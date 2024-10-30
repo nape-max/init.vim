@@ -53,6 +53,9 @@ return require("packer").startup(function(use)
         "nvim-telescope/telescope.nvim",
         tag = "0.1.4",
         requires = { { "nvim-lua/plenary.nvim" } },
+        config = function()
+            require("configs.telescope")
+        end,
         commit = "a0bbec21143c7bc5f8bb02e0005fa0b982edc026",
     })
 
@@ -88,17 +91,6 @@ return require("packer").startup(function(use)
     use({ "hrsh7th/cmp-path", after = "cmp", commit = "91ff86cd9c29299a64f968ebb45846c485725f23" })
 
     use({ "hrsh7th/cmp-buffer", after = "cmp", commit = "3022dbc9166796b644a841a02de8dd1cc1d311fa" })
-
-    -- LSP diagnostics, code actions, and more via Lua.
-    -- @DEPRECATED
-    -- use({
-    --     "jose-elias-alvarez/null-ls.nvim",
-    --     config = function()
-    --         require("configs.null-ls")
-    --     end,
-    --     requires = { "nvim-lua/plenary.nvim" },
-    --     commit = "0010ea927ab7c09ef0ce9bf28c2b573fc302f5a7",
-    -- })
 
     use({
         'jose-elias-alvarez/null-ls.nvim',
