@@ -171,6 +171,12 @@ nvim_lsp.gopls.setup({
     },
 })
 
+-- C++
+nvim_lsp.clangd.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
 -- OpenAPI
 vim.filetype.add {
     pattern = {
