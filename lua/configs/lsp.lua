@@ -29,6 +29,19 @@ if not configs.briefls then
     }
 end
 
+-- Inject vacuum LSP
+if not configs.vacuum then
+    configs.vacuum = {
+        default_config = {
+            cmd = { 'vacuum', 'language-server' },
+            filetypes = { 'yaml.openapi', 'json.openapi' },
+            root_dir = util.find_git_ancestor,
+            single_file_support = true,
+        },
+        settings = {},
+    }
+end
+
 local initialize_lsp_which_keys
 local on_attach = function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
@@ -156,6 +169,19 @@ nvim_lsp.gopls.setup({
             buildFlags = { "-tags=integration" },
         },
     },
+})
+
+-- OpenAPI
+vim.filetype.add {
+    pattern = {
+        ['openapi.*%.ya?ml'] = 'yaml.openapi',
+        ['schema.ya?ml'] = 'yaml.openapi',
+        ['openapi.*%.json'] = 'json.openapi',
+    },
+}
+nvim_lsp.vacuum.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
 })
 
 vim.filetype.add({ extension = { brief = "brief" } })
