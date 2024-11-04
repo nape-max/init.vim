@@ -177,6 +177,11 @@ nvim_lsp.clangd.setup({
     capabilities = capabilities,
 })
 
+nvim_lsp.rust_analyzer.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
 -- OpenAPI
 vim.filetype.add {
     pattern = {
